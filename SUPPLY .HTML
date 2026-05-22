@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>AI Supply Chain Dashboard</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 class="dashboard-title">
+        AI SUPPLY CHAIN LOGISTICS DASHBOARD
+    </h1>
+
+    <!-- KPI CARDS -->
+
+    <div class="cards">
+
+        <div class="card blue">
+
+            <h2>Total Shipments</h2>
+
+            <p>{{ total_shipments }}</p>
+
+        </div>
+
+        <div class="card red">
+
+            <h2>Delayed Orders</h2>
+
+            <p>{{ delayed_shipments }}</p>
+
+        </div>
+
+        <div class="card green">
+
+            <h2>Average Discount</h2>
+
+            <p>{{ avg_discount }}</p>
+
+        </div>
+
+        <div class="card orange">
+
+            <h2>Customer Rating</h2>
+
+            <p>{{ avg_rating }}</p>
+
+        </div>
+
+    </div>
+
+    <!-- SUPPLY CHAIN FLOW -->
+
+    <div class="analytics-table">
+
+        <h2>Supply Chain Workflow</h2>
+
+        <table>
+
+            <tr>
+
+                <th>Stage</th>
+
+                <th>Description</th>
+
+            </tr>
+
+            <tr>
+
+                <td>Supplier</td>
+
+                <td>Supplies products to warehouse</td>
+
+            </tr>
+
+            <tr>
+
+                <td>Warehouse</td>
+
+                <td>Stores and processes cargo</td>
+
+            </tr>
+
+            <tr>
+
+                <td>Cargo</td>
+
+                <td>Handles shipment packaging</td>
+
+            </tr>
+
+            <tr>
+
+                <td>Transportation</td>
+
+                <td>Moves shipment via road/air/ship</td>
+
+            </tr>
+
+            <tr>
+
+                <td>Courier</td>
+
+                <td>Last-mile delivery process</td>
+
+            </tr>
+
+            <tr>
+
+                <td>Delivery</td>
+
+                <td>Package delivered to customer</td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+    <!-- PREDICTION FORM -->
+
+    <div class="chart-box">
+
+        <h2>Supply Chain Prediction System</h2>
+
+        <form action="/predict" method="POST">
+
+            <input
+            type="number"
+            name="supplier_delay"
+            placeholder="Supplier Delay"
+            required>
+
+            <input
+            type="number"
+            name="warehouse_capacity"
+            placeholder="Warehouse Capacity"
+            required>
+
+            <input
+            type="number"
+            name="cargo_weight"
+            placeholder="Cargo Weight"
+            required>
+
+            <input
+            type="number"
+            name="transportation_delay"
+            placeholder="Transportation Delay"
+            required>
+
+            <input
+            type="number"
+            name="courier_rating"
+            placeholder="Courier Rating"
+            required>
+
+            <input
+            type="number"
+            name="delivery_distance"
+            placeholder="Delivery Distance"
+            required>
+
+            <input
+            type="number"
+            name="customer_rating"
+            placeholder="Customer Rating"
+            required>
+
+            <button type="submit">
+
+                Predict Delivery
+
+            </button>
+
+        </form>
+
+        {% if prediction %}
+
+        <div class="prediction-box">
+
+            <h2>{{ prediction }}</h2>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    <!-- FIRST CHART SECTION -->
+
+    <div class="charts">
+
+        <div class="chart-box">
+
+            <h2>Delivery Analytics</h2>
+
+            <img src="{{ url_for('static',
+            filename='pie_chart.png') }}">
+
+        </div>
+
+        <div class="chart-box">
+
+            <h2>Shipment Analytics</h2>
+
+            <img src="{{ url_for('static',
+            filename='bar_chart.png') }}">
+
+        </div>
+
+    </div>
+
+    <!-- SECOND CHART SECTION -->
+
+    <div class="charts">
+
+        <div class="chart-box">
+
+            <h2>Customer Ratings</h2>
+
+            <img src="{{ url_for('static',
+            filename='rating_chart.png') }}">
+
+        </div>
+
+        <div class="chart-box">
+
+            <h2>Product Importance</h2>
+
+            <img src="{{ url_for('static',
+            filename='importance_chart.png') }}">
+
+        </div>
+
+    </div>
+
+    <!-- THIRD CHART SECTION -->
+
+    <div class="charts">
+
+        <div class="chart-box">
+
+            <h2>Warehouse Analytics</h2>
+
+            <img src="{{ url_for('static',
+            filename='warehouse_chart.png') }}">
+
+        </div>
+
+        <div class="chart-box">
+
+            <h2>Transportation Analytics</h2>
+
+            <img src="{{ url_for('static',
+            filename='transport_chart.png') }}">
+
+        </div>
+
+    </div>
+
+    <!-- WAREHOUSE TABLE -->
+
+    <div class="analytics-table">
+
+        <h2>Warehouse Performance</h2>
+
+        <table>
+
+            <tr>
+
+                <th>Warehouse</th>
+
+                <th>Orders</th>
+
+                <th>Delayed</th>
+
+                <th>Performance</th>
+
+            </tr>
+
+            <tr>
+
+                <td>Chennai</td>
+
+                <td>4500</td>
+
+                <td>320</td>
+
+                <td>92%</td>
+
+            </tr>
+
+            <tr>
+
+                <td>Bangalore</td>
+
+                <td>3900</td>
+
+                <td>280</td>
+
+                <td>94%</td>
+
+            </tr>
+
+            <tr>
+
+                <td>Mumbai</td>
+
+                <td>5100</td>
+
+                <td>410</td>
+
+                <td>91%</td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
